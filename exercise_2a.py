@@ -1,18 +1,21 @@
-def get_input(message)
+def get_input(message):
     user_input = str(input(message))
     if user_input.isdigit() and not 0:
         return user_input
     elif user_input == 0:
         print("Cannot be 0")
+    elif user_input.isdigit() == False:
+        print("Cannot be text")
+        return None
     return None
 
 gallons = None
 
 while gallons is None:
-    gallons = float(raw_input("How many gallons do you require? "))
+    gallons = float(get_input("How many gallons do you require? "))
 
 liters = gallons * 3.7854
-barrel = 19.5 / gallons
+barrel = round(gallons / 19.5, 2)
 co2 = gallons * 20
 e_energy = 115 / 75.7 * gallons
 cost = gallons * 4
