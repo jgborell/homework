@@ -1,7 +1,7 @@
 int_1 = int(raw_input("Please enter the first integer: "))
 int_2 = int(raw_input("Please enter the second integer: "))
 while int_2 == 0:
-    int_2 = raw_input("Your second integer can not be 0, please enter another number: ")
+    int_2 = int(raw_input("Your second integer can not be 0, please enter another number: "))
 
 addition = int_1 + int_2
 diff = int_1 - int_2

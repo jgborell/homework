@@ -2,8 +2,9 @@ def get_input(message):
     user_input = str(input(message))
     if user_input.isdigit() and not 0:
         return user_input
-    elif user_input == 0:
+    elif user_input == "0":
         print("Cannot be 0")
+        return None
     elif user_input.isdigit() == False:
         print("Cannot be text")
         return None

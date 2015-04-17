@@ -1,0 +1,93 @@
+6
+Exceptions
+• Three basic types of errors:
+1. Syntax: happens when you type something incorrectly, based on Python inter-
+preter rules
+2. Runtime: happens when something unexpected (or exceptional) happens while
+your program is running
+3. Logical: nothings appears to be wrong, but the result or output is different than
+expected
+– Semantic: semantic errors are essentially equivalent to logical errors in Python,
+however semantic errors can be caught by compilers in strongly typed lan-
+guages. Examples include attempting to store a string in an integer, or
+attempting to store a floating point number in an array of characters.
+Exception handling deals specifically with runtime errors. There are built-in exceptions;
+additionally, you can create your own
+• What is an exception?
+– An event that happens which disrupts the normal flow of a program
+– When a program can’t determine how to handle an error, it raises an exception
+– An exception is a Python object that represents and error
+– An exception, unless handled, will cause a program to terminate
+• try block
+– This is where your operations exist
+– Used if you anticipate raising an exception or if you know the code you’ll be using
+could potentially raise an exception
+– Try blocks can be nested, just like any other structure
+19• except block
+– Can have unlimited except blocks tied to a try block
+– Each block can handle a different type of exception
+– You could create a single except block that handles all exceptions
+– The block of code only executes if that particular exception is raised
+– Can include an argument which gives more detail of the error or exception
+• else block
+– Gets executed if the try block does not raise an exception
+– Very similar to the else block attached to iterations or loops
+• finally block
+– Always gets executed, no matter what happens in the try block - even if an
+exception is raised
+– Very good for making sure file handles or database connections are closed
+• raise statement
+– Signals that something has happened and returns control back to calling location
+– Can take an error, arguments, and traceback
+– Error is what is handled by the except block
+– Arguments give more detail about the error or exception
+try:
+fh = open("/tmp/blah/blah/blah", "w")
+fh.write("This is my test file for exception handling!!")
+except IOError:
+print "Error: can’t find file or read data"
+else:
+print "Written content in the file successfully"
+An example with a finally block, without an except block
+try:
+fh = open("/tmp/blah/blah/testfile", "w")
+fh.write("This is my test file for exception handling!!")
+finally:
+print "Error: can’t find file or read data"
+• Built-in Exceptions
+– http://docs.python.org/2/library/exceptions.html
+– https://docs.python.org/2/library/exceptions.html#exception-hierarchy
+– BaseException – base class for all built-in exceptions
+20– Exception – derives from BaseException, should be the class that is used for
+user-defined exceptions as well
+– StandardError – base class for all built-in exceptions except StopIteration, Gen-
+eratorExit, KeyboardInterrupt, and SystemExit. It is derived from Exception
+– AssertionError – raised when an assert statement fails
+– EOFError – raised when an end of file is hit. file.readline() handles this and
+returns an empty string when this is hit
+– IOError – raised when you try to do file i/o operations that fail
+– StopIteration – raised when an iterator has been exhausted
+– ZeroDivisionError – raised when you try to divide or mod by 0
+• User-defined Exceptions
+– Gives you fine-grained control over what the user or developer sees
+class MyError(StandardError):
+def __init__(self, arg):
+self.arg = arg
+try:
+raise MyError("This is a user-defined error")
+except MyError as me: # Older version of Python used a comma vs. “as.”
+print me.arg
+6.1
+Exercise 6
+• Write a script that tries to open a file that does not exist. Create a function that takes
+a file name, tries to open a file with that name, but does not handle the exception in
+the function. Instead, handle it in the code that calls the function.
+• Copy your code and modify it so that the exception is handled in the function itself
+rather than in the calling code (that is, the code which calls the function).
+• Summary:
+1. Create a function that takes a file name as a parameter
+2. Create a second function that also takes a file name as a parameter
+3. In your main script, make a call to both functions
+4. One function should handle the exception that will be raised
+5. The other function should NOT handle the exception (which means that your
+main script must handle it)
